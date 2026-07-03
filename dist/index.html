@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModularStep - OSHA & EN 131 Compliant Industrial Access Systems</title>
+    <meta name="description" content="Configure custom modular aluminum stairs, industrial work platforms, safety handrails, and crossover bridges. Pre-engineered access solutions.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css?v=4">
+    <link rel="stylesheet" href="content.css?v=4">
+</head>
+<body>
+    <!-- Top Alert Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-container">
+            <span>🛡️ Certified Safety: All systems pre-engineered to meet OSHA 1910 & EN 131 standards</span>
+            <a href="#catalog" class="top-bar-link">Download PDF Catalog →</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">▲</span>
+                <span class="logo-text">MODULAR<span class="highlight">STEP</span></span>
+            </a>
+            <nav class="main-nav" id="mainNav">
+                <a href="products.html">Products</a>
+                <a href="index.html#configurator">Configurator</a>
+                <a href="safety.html">Compliance</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html" class="btn btn-primary btn-sm">Request Quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="configurator">
+        <div class="container hero-container">
+            <div class="hero-text-content">
+                <div class="badge">Industrial Climbing Systems</div>
+                <h1>OSHA-Compliant Access <br><span class="highlight">Made Simple</span></h1>
+                <p class="hero-desc">
+                    Configure custom crossover stairs and maintenance platforms in real-time. Built from marine-grade 6061-T6 aluminum. Fast, bolt-together assembly with zero field welding.
+                </p>
+                
+                <!-- Trust Certification Badges -->
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <span class="cert-icon">✓</span>
+                        <div class="cert-text">
+                            <strong>OSHA 1910.25</strong>
+                            <span>US Safety Standard</span>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <span class="cert-icon">✓</span>
+                        <div class="cert-text">
+                            <strong>EN 131 / EN 1004</strong>
+                            <span>European Access Code</span>
+                        </div>
+                    </div>
+                    <div class="cert-item">
+                        <span class="cert-icon">✓</span>
+                        <div class="cert-text">
+                            <strong>TÜV SÜD Certified</strong>
+                            <span>Quality Inspected</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">Lock In Configuration</a>
+                    <a href="#catalog" class="btn btn-secondary">Technical Catalog</a>
+                </div>
+            </div>
+
+            <!-- Interactive Configurator -->
+            <div class="configurator-card">
+                <div class="config-header">
+                    <h3>3D Configurator</h3>
+                    <span class="status-indicator">OSHA Compliant</span>
+                </div>
+                <div class="visualizer-container">
+                    <div id="visualizer-target">
+                        <!-- WebGL 3D Canvas will be injected here by Three.js -->
+                    </div>
+                </div>
+                <div class="config-controls">
+                    <!-- Step Slider -->
+                    <div class="control-group">
+                        <div class="control-header">
+                            <label for="step-slider">Stair Height (<span id="step-count-display">5</span> Steps)</label>
+                            <span class="control-value" id="height-display">94" Height</span>
+                        </div>
+                        <input type="range" id="step-slider" min="1" max="15" value="5" class="slider">
+                    </div>
+
+                    <!-- Handrail Toggles -->
+                    <div class="control-row">
+                        <div class="control-group half-width">
+                            <label>Handrails</label>
+                            <div class="toggle-buttons">
+                                <button type="button" class="btn-toggle active" id="handrails-on">Included</button>
+                                <button type="button" class="btn-toggle" id="handrails-off">None</button>
+                            </div>
+                        </div>
+                        <div class="control-group half-width">
+                            <label>Platform Extension</label>
+                            <div class="toggle-buttons">
+                                <button type="button" class="btn-toggle active" id="platform-single">Single</button>
+                                <button type="button" class="btn-toggle" id="platform-double">Double</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Computed Specs -->
+                    <div class="computed-specs">
+                        <div class="spec-tile">
+                            <span class="spec-title">Clearance</span>
+                            <span class="spec-val" id="spec-clearance">59 in</span>
+                        </div>
+                        <div class="spec-tile">
+                            <span class="spec-title">Footprint</span>
+                            <span class="spec-val" id="spec-footprint">50 in</span>
+                        </div>
+                        <div class="spec-tile">
+                            <span class="spec-title">Est. Weight</span>
+                            <span class="spec-val" id="spec-weight">165 lbs</span>
+                        </div>
+                        <div class="spec-tile">
+                            <span class="spec-title">Load Capacity</span>
+                            <span class="spec-val">1000 lbs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sectors / Product Categories Section -->
+    <section class="sectors-section" id="sectors">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Access Solutions By Sector</h2>
+                <p>Çağsan-engineered safety systems tailored for different industries, warehouses, and construction sites.</p>
+            </div>
+            
+            <div class="sectors-tabs">
+                <!-- Sector Card 1 -->
+                <div class="sector-card">
+                    <div class="sector-img-strip red-accent"></div>
+                    <div class="sector-card-content">
+                        <span class="sector-num">01</span>
+                        <h3>Industrial Platforms</h3>
+                        <p>High-strength machine steps and crossover stairs designed to clear factory pipelines, conveyors, and dangerous zones.</p>
+                        <a href="#configurator" class="sector-link">Configure Now →</a>
+                    </div>
+                </div>
+                <!-- Sector Card 2 -->
+                <div class="sector-card">
+                    <div class="sector-img-strip blue-accent"></div>
+                    <div class="sector-card-content">
+                        <span class="sector-num">02</span>
+                        <h3>Mobile Scaffolding</h3>
+                        <p>Pre-engineered aluminum scaffolding towers (ProTUBE style) with rolling locks and height-adjustable stabilization systems.</p>
+                        <a href="#contact" class="sector-link">Inquire System →</a>
+                    </div>
+                </div>
+                <!-- Sector Card 3 -->
+                <div class="sector-card">
+                    <div class="sector-img-strip yellow-accent"></div>
+                    <div class="sector-card-content">
+                        <span class="sector-num">03</span>
+                        <h3>Warehouse Ladders</h3>
+                        <p>Rolling safety ladders with large work platforms, kick plates, and spring-loaded casters for easy stocking access.</p>
+                        <a href="#specifications" class="sector-link">View Specifications →</a>
+                    </div>
+                </div>
+                <!-- Sector Card 4 -->
+                <div class="sector-card">
+                    <div class="sector-img-strip green-accent"></div>
+                    <div class="sector-card-content">
+                        <span class="sector-num">04</span>
+                        <h3>Aviation Maintenance</h3>
+                        <p>Custom-built tail-docks, wings-docks, and adjustable height aluminum work stands for commercial and military aircraft.</p>
+                        <a href="#contact" class="sector-link">Custom Request →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Catalog Download CTA -->
+    <section class="catalog-section" id="catalog">
+        <div class="container catalog-container">
+            <div class="catalog-content">
+                <h2>Download Technical Specifications & Catalog</h2>
+                <p>Get full access to detailed structural CAD layouts, dimension tables, load ratings, and assembly guides for the ModularStep collection.</p>
+                <div class="catalog-actions">
+                    <a href="#" class="btn btn-primary" onclick="alert('Technical Catalog PDF download started!'); return false;">Download Catalog (PDF, 8.4 MB)</a>
+                    <a href="#contact" class="catalog-secondary-link">Request Physical Copy By Mail</a>
+                </div>
+            </div>
+            <div class="catalog-mockup">
+                <div class="catalog-cover">
+                    <span class="mock-logo">▲ MODULARSTEP</span>
+                    <h4>TECHNICAL SPECIFICATIONS CATALOG</h4>
+                    <span class="mock-footer">2026 EDITION</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs Table -->
+    <section class="specs-section" id="specifications">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Standard Step Configurations</h2>
+                <p>Werner-standard load metrics and size parameters for our access step series.</p>
+            </div>
+            <div class="table-responsive">
+                <table class="specs-table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Steps</th>
+                            <th>Height</th>
+                            <th>Clearance</th>
+                            <th>Est. Weight</th>
+                            <th>Load Rating</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MS-01</td>
+                            <td>1 Step</td>
+                            <td>59"</td>
+                            <td>12"</td>
+                            <td>80 lbs</td>
+                            <td>1000 lbs (Extra Heavy Duty)</td>
+                            <td><button class="btn btn-sm btn-outline select-config-btn" data-steps="1">Configure</button></td>
+                        </tr>
+                        <tr>
+                            <td>MS-03</td>
+                            <td>3 Steps</td>
+                            <td>74"</td>
+                            <td>36"</td>
+                            <td>125 lbs</td>
+                            <td>1000 lbs (Extra Heavy Duty)</td>
+                            <td><button class="btn btn-sm btn-outline select-config-btn" data-steps="3">Configure</button></td>
+                        </tr>
+                        <tr>
+                            <td>MS-05</td>
+                            <td>5 Steps</td>
+                            <td>94"</td>
+                            <td>59"</td>
+                            <td>165 lbs</td>
+                            <td>1000 lbs (Extra Heavy Duty)</td>
+                            <td><button class="btn btn-sm btn-outline select-config-btn" data-steps="5">Configure</button></td>
+                        </tr>
+                        <tr>
+                            <td>MS-08</td>
+                            <td>8 Steps</td>
+                            <td>117"</td>
+                            <td>94"</td>
+                            <td>220 lbs</td>
+                            <td>1000 lbs (Extra Heavy Duty)</td>
+                            <td><button class="btn btn-sm btn-outline select-config-btn" data-steps="8">Configure</button></td>
+                        </tr>
+                        <tr>
+                            <td>MS-10</td>
+                            <td>10 Steps</td>
+                            <td>138"</td>
+                            <td>118"</td>
+                            <td>260 lbs</td>
+                            <td>1000 lbs (Extra Heavy Duty)</td>
+                            <td><button class="btn btn-sm btn-outline select-config-btn" data-steps="10">Configure</button></td>
+                        </tr>
+                        <tr>
+                            <td>MS-12</td>
+                            <td>12 Steps</td>
+                            <td>156"</td>
+                            <td>142"</td>
+                            <td>310 lbs</td>
+                            <td>1000 lbs (Extra Heavy Duty)</td>
+                            <td><button class="btn btn-sm btn-outline select-config-btn" data-steps="12">Configure</button></td>
+                        </tr>
+                        <tr>
+                            <td>MS-15</td>
+                            <td>15 Steps</td>
+                            <td>184"</td>
+                            <td>178"</td>
+                            <td>390 lbs</td>
+                            <td>1000 lbs (Extra Heavy Duty)</td>
+                            <td><button class="btn btn-sm btn-outline select-config-btn" data-steps="15">Configure</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance & Safety -->
+    <section class="safety-section" id="safety">
+        <div class="container safety-grid">
+            <div class="safety-image-placeholder">
+                <div class="safety-badge">OSHA & EN 131</div>
+                <h3>Regulatory Safety Compliance</h3>
+                <ul>
+                    <li><strong>EN 131:</strong> European safety certification ensuring dimensional limits, load bearing test passes, and anti-slip stability.</li>
+                    <li><strong>OSHA 1910.25:</strong> American regulation standardizing rise/run configurations, step angles, and handrail loading capacity.</li>
+                    <li><strong>Slip-Resistance:</strong> Specialized grooved aluminum tread profiles preventing oil/chemical accumulation.</li>
+                    <li><strong>Material Quality:</strong> Made exclusively from structural-grade 6061-T6 aluminum alloy.</li>
+                </ul>
+            </div>
+            <div class="safety-content">
+                <h2>Designed for Maximum Job Site Safety</h2>
+                <p>
+                    Occupational safety is at the core of the ModularStep engineering philosophy. Every component of our modular platform system undergoes strict stress analysis and inspection before shipment.
+                </p>
+                <p>
+                    By utilizing our standardized, pre-engineered aluminum steps, platforms, and handrails, you bypass local engineering review delays and field-welding safety hazards. Simply bolt the components together in a few hours using standard hand tools.
+                </p>
+                <a href="#contact" class="btn btn-secondary">Request Structural Data Sheets</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Quote Form -->
+    <section class="contact-section" id="contact">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h2>Get an Official Quote</h2>
+                <p>Submit your access configurations. Our engineering team will review your specifications and supply a formal quotation within 24 business hours.</p>
+                <div class="info-list">
+                    <div class="info-item">
+                        <span class="info-icon">📍</span>
+                        <span>Saray Mah. Kahramankazan, Ankara</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">✉️</span>
+                        <span>sales@modularstep.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-card">
+                <form id="quote-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="client-name">Full Name</label>
+                            <input type="text" id="client-name" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="client-email">Email Address</label>
+                            <input type="email" id="client-email" required placeholder="john@company.com">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="config-summary">Selected Config</label>
+                            <input type="text" id="config-summary" readonly value="5 Steps - 94 inches with Handrails">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="client-message">Project Notes & Details</label>
+                        <textarea id="client-message" rows="4" placeholder="Mention any clearance heights, obstruction details, or specific safety requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit Quote Request</button>
+                    <div id="form-feedback" class="form-feedback"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">▲</span>
+                    <span class="logo-text">MODULAR<span class="highlight">STEP</span></span>
+                </a>
+                <p class="footer-brand-desc">OSHA & EN 131 compliant pre-engineered aluminum access climbing systems. Designed and manufactured for high stability and safety.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="products.html#industrial">Industrial Platforms</a></li>
+                    <li><a href="products.html#scaffolding">Mobile Scaffolding</a></li>
+                    <li><a href="products.html#warehouse">Warehouse Ladders</a></li>
+                    <li><a href="products.html#aviation">Aviation Access Stands</a></li>
+                    <li><a href="index.html#configurator">Crossover Stairs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="products.html#catalog">PDF Catalog Download</a></li>
+                    <li><a href="safety.html#manuals">User & Safety Manuals</a></li>
+                    <li><a href="safety.html#certificates">Quality Certificates</a></li>
+                    <li><a href="products.html#specifications">Load Rating Tables</a></li>
+                    <li><a href="contact.html">Request CAD Drawings</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Corporate</h4>
+                <ul>
+                    <li><a href="about.html">About ModularStep</a></li>
+                    <li><a href="about.html#quality">Quality Policy</a></li>
+                    <li><a href="about.html#facility">Production Facility</a></li>
+                    <li><a href="contact.html">Request Quote</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 ModularStep climbing access systems. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Three.js and OrbitControls for 3D Visualizer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- Main JavaScript Modules -->
+    <script type="module" src="main.js?v=4"></script>
+</body>
+</html>
