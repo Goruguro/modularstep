@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | ModularStep Configurator</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css?v=4">
+    <link rel="stylesheet" href="content.css?v=4">
+    <style>
+        .admin-wrapper { display: flex; align-items: center; justify-content: center; min-height: 80vh; padding: 40px 0; }
+        .login-card { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 40px; width: 100%; max-width: 400px; box-shadow: var(--shadow); }
+        .login-card h2 { margin-bottom: 24px; text-align: center; }
+        .dashboard-container { display: none; padding: 40px 0; }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; }
+        .preview-container { height: 350px; background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; position: relative; margin-bottom: 24px; }
+        .preview-canvas { width: 100%; height: 100%; }
+        .presets-list-card { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 32px; box-shadow: var(--shadow); }
+        .preset-table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 16px; }
+        .preset-table th, .preset-table td { padding: 12px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        .preset-table th { background-color: #f1f5f9; font-weight: 700; }
+        .btn-delete { background-color: #ef4444; color: white; padding: 6px 12px; font-size: 0.8rem; border-radius: 4px; border: none; }
+        .btn-delete:hover { background-color: #dc2626; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
+        .admin-header h1 { font-size: 1.5rem; }
+    </style>
+</head>
+<body class="admin-body">
+    <!-- Top Alert Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-container">
+            <span>🛡️ ModularStep Configurator Management Portal</span>
+            <a href="index.html" class="top-bar-link">Back to Public Site →</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Login Portal -->
+        <div class="admin-wrapper" id="loginWrapper">
+            <div class="login-card">
+                <h2>Admin Login</h2>
+                <form id="admin-login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" required placeholder="admin">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                    <div id="login-feedback" class="form-feedback error"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard Panel -->
+        <div class="dashboard-container" id="dashboardPanel">
+            <div class="admin-header">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">▲</span>
+                    <span class="logo-text">MODULAR<span class="highlight">STEP</span> <span style="font-size:0.8rem; font-weight:normal; color:var(--text-secondary)">ADMIN</span></span>
+                </a>
+                <button class="btn btn-secondary btn-sm" id="logoutBtn">Logout</button>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Left panel: Preset Creator -->
+                <div class="contact-form-card">
+                    <h3>Create Configuration Preset</h3>
+                    <form id="preset-form">
+                        <div class="form-group">
+                            <label for="preset-name">Preset Name</label>
+                            <input type="text" id="preset-name" required placeholder="ESPERON 6-Step Custom">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="step-count">Step Count (Risers)</label>
+                                <input type="number" id="step-count" min="2" max="15" value="4" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="step-width">Step Width (mm)</label>
+                                <input type="number" id="step-width" min="600" max="1200" step="100" value="800" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="platform-length">Platform Length (mm)</label>
+                                <input type="number" id="platform-length" min="600" max="2400" step="200" value="1000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="load-capacity">Load Capacity (kg)</label>
+                                <input type="number" id="load-capacity" min="100" max="500" step="50" value="150" required>
+                            </div>
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
+                            <input type="checkbox" id="has-handrails" checked style="width: auto;">
+                            <label for="has-handrails" style="margin-bottom: 0; cursor: pointer;">Include Safety Orange Handrails</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" style="margin-top:20px">Save to Database</button>
+                    </form>
+                </div>
+
+                <!-- Right panel: Preview & List -->
+                <div>
+                    <!-- 3D Preview Frame -->
+                    <div class="preview-container">
+                        <div style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); padding:4px 10px; border-radius:4px; font-size:0.75rem; font-weight:700; border:1px solid var(--border); z-index:10;">3D Render Preview</div>
+                        <div id="preview3D" class="preview-canvas"></div>
+                    </div>
+
+                    <!-- Presets Table -->
+                    <div class="presets-list-card">
+                        <h3>Saved Presets</h3>
+                        <table class="preset-table" id="presetsTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Steps</th>
+                                    <th>Width</th>
+                                    <th>Platform</th>
+                                    <th>Handrails</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="presetsListBody">
+                                <!-- Loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script type="module" src="admin.js?v=4"></script>
+</body>
+</html>

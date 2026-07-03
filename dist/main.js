@@ -346,9 +346,48 @@ document.addEventListener('DOMContentLoaded', () => {
     init3D();
     updateVisualizer();
     updateSpecs();
+    loadDatabasePresets();
 });
 
-// Bridge Pattern: Expose interface to global context for potential template integration
+async function loadDatabasePresets() {
+    const group = document.getElementById('db-presets-group');
+    const select = document.getElementById('db-presets-select');
+    if (!group || !select) return;
+    try {
+        const res = await fetch(`${window.location.origin}/api/presets`);
+        const presets = await res.json();
+        if (presets && presets.length > 0) {
+            group.style.display = 'block';
+            select.innerHTML = '<option value="">-- Choose Preset --</option>';
+            presets.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = JSON.stringify(p);
+                opt.textContent = `${p.name} (${p.steps} Steps, ${p.step_width}mm)`;
+                select.appendChild(opt);
+            });
+            select.addEventListener('change', (e) => {
+                const val = e.target.value;
+                if (!val) return;
+                const p = JSON.parse(val);
+                state.steps = p.steps;
+                state.handrails = p.has_handrails === 1;
+                state.platform = p.platform_length > 1000 ? 'double' : 'single';
+                const slider = document.getElementById('step-slider');
+                if (slider) slider.value = p.steps;
+                document.getElementById('handrails-on').classList.toggle('active', state.handrails === true);
+                document.getElementById('handrails-off').classList.toggle('active', state.handrails === false);
+                document.getElementById('platform-single').classList.toggle('active', state.platform === 'single');
+                document.getElementById('platform-double').classList.toggle('active', state.platform === 'double');
+                updateVisualizer();
+                updateSpecs();
+            });
+        }
+    } catch (err) {
+        console.log('[*] API Server offline, using default local presets.');
+    }
+}
+
+// Bridge Pattern
 if (typeof window !== 'undefined') {
     window.state = state;
     window.setConfig = setConfig;
