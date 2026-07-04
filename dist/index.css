@@ -87,9 +87,10 @@ a {
     align-items: center;
 }
 .top-bar-link {
-    color: var(--accent);
+    color: #fed7aa;
 }
 .top-bar-link:hover {
+    color: #ffffff;
     text-decoration: underline;
 }
 
