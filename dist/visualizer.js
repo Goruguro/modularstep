@@ -31,10 +31,8 @@ function loadScript(src) {
 
 /**
  * Initializes the WebGL 3D scene, lighting, camera, and user OrbitControls.
- * @param {number} [preWidth] - Pre-measured container width.
- * @param {number} [preHeight] - Pre-measured container height.
  */
-export async function init3D(preWidth, preHeight) {
+export async function init3D() {
     const container = document.getElementById('visualizer-target');
     if (!container) return;
 
@@ -62,8 +60,8 @@ export async function init3D(preWidth, preHeight) {
         }
     }
 
-    const width = preWidth || container.clientWidth || 400;
-    const height = preHeight || container.clientHeight || 300;
+    const width = container.clientWidth || 400;
+    const height = container.clientHeight || 300;
 
     // 1. Create Scene
     scene = new THREE.Scene();
