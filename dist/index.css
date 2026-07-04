@@ -26,6 +26,9 @@
     margin: 0;
     padding: 0;
 }
+main {
+    display: block;
+}
 html {
     scroll-behavior: smooth;
     font-family: var(--font-sans);
