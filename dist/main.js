@@ -148,13 +148,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Show a subtle loading indicator in the visualizer target
+        // Measure container dimensions first to avoid forced reflow
         const container = document.getElementById('visualizer-target');
+        let preWidth = 400, preHeight = 300;
         if (container) {
+            preWidth = container.clientWidth || 400;
+            preHeight = container.clientHeight || 300;
             container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-secondary);">Loading 3D Visualizer...</div>';
         }
 
-        await init3D();
+        await init3D(preWidth, preHeight);
         updateVisualizer(state);
         loadDatabasePresets();
     };
