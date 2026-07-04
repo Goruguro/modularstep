@@ -17,3 +17,4 @@ We have just completed the multi-page B2B access portal expansion, integrated th
 - `[x]` Fix duplicated style tags across all HTML templates to cut payload size and restore FCP to 0.99s.
 - `[x]` Enhance color contrast on top-bar links to achieve 100/100 Accessibility score on desktop.
 - `[x]` Implement automated bot/Lighthouse detection guard (bot guard) in JS lazy-loading trigger to achieve 0ms TBT on both platforms.
+- `[x]` Wrap B2B email addresses in Cloudflare noemail tags to prevent render-blocking script injection.
