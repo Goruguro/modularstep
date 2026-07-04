@@ -1,20 +1,18 @@
 /* CSS Design System and Core Layout - ModularStep.com (Werner/Çağsan Hybrid) */
-@import "configurator.css?v=3";
-@import "content.css?v=3";
 
 :root {
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
     --bg-card: #ffffff;
-    --accent: #f97316; /* Safety Orange */
-    --accent-hover: #ea580c;
-    --accent-rgb: 249, 115, 22;
+    --accent: #c2410c; /* Safety Orange (WCAG AA Compliant Contrast) */
+    --accent-hover: #9a3412;
+    --accent-rgb: 194, 65, 12;
     --text-primary: #0f172a; /* High legibility dark charcoal */
     --text-secondary: #475569;
     --text-muted: #64748b;
     --border: #e2e8f0; /* Crisp steel borders */
     --border-hover: #cbd5e1;
-    --success: #10b981;
+    --success: #047857;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-display: 'Space Grotesk', sans-serif;
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);

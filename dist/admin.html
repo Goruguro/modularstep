@@ -9,8 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="index.css?v=4">
-    <link rel="stylesheet" href="content.css?v=4">
+    <link rel="stylesheet" href="index.css?v=5">
+    <link rel="stylesheet" href="configurator.css?v=5">
+    <link rel="stylesheet" href="content.css?v=5">
     <style>
         .admin-wrapper { display: flex; align-items: center; justify-content: center; min-height: 80vh; padding: 40px 0; }
         .login-card { background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 40px; width: 100%; max-width: 400px; box-shadow: var(--shadow); }
@@ -38,7 +39,8 @@
         </div>
     </div>
 
-    <div class="container">
+    <main class="container">
+        <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Admin Control Panel</h1>
         <!-- Login Portal -->
         <div class="admin-wrapper" id="loginWrapper">
             <div class="login-card">
@@ -71,7 +73,7 @@
             <div class="dashboard-grid">
                 <!-- Left panel: Preset Creator -->
                 <div class="contact-form-card">
-                    <h3>Create Configuration Preset</h3>
+                    <h2>Create Configuration Preset</h2>
                     <form id="preset-form">
                         <div class="form-group">
                             <label for="preset-name">Preset Name</label>
@@ -115,7 +117,7 @@
 
                     <!-- Presets Table -->
                     <div class="presets-list-card">
-                        <h3>Saved Presets</h3>
+                        <h2>Saved Presets</h2>
                         <table class="preset-table" id="presetsTable">
                             <thead>
                                 <tr>
@@ -138,8 +140,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <script type="module" src="admin.js?v=4"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script type="module" defer src="admin.js?v=5"></script>
 </body>
 </html>

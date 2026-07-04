@@ -10,8 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="index.css?v=4">
-    <link rel="stylesheet" href="content.css?v=4">
+    <link rel="stylesheet" href="index.css?v=5">
+    <link rel="stylesheet" href="configurator.css?v=5">
+    <link rel="stylesheet" href="content.css?v=5">
 </head>
 <body>
     <!-- Top Alert Bar -->
@@ -38,6 +39,8 @@
             </nav>
         </div>
     </header>
+
+    <main>
 
     <!-- Hero Section -->
     <section class="hero-section" id="configurator">
@@ -83,7 +86,7 @@
             <!-- Interactive Configurator -->
             <div class="configurator-card">
                 <div class="config-header">
-                    <h3>3D Configurator</h3>
+                    <h2>3D Configurator</h2>
                     <span class="status-indicator">OSHA Compliant</span>
                 </div>
                 <div class="visualizer-container">
@@ -218,7 +221,7 @@
             <div class="catalog-mockup">
                 <div class="catalog-cover">
                     <span class="mock-logo">▲ MODULARSTEP</span>
-                    <h4>TECHNICAL SPECIFICATIONS CATALOG</h4>
+                    <h3>TECHNICAL SPECIFICATIONS CATALOG</h3>
                     <span class="mock-footer">2026 EDITION</span>
                 </div>
             </div>
@@ -320,7 +323,7 @@
         <div class="container safety-grid">
             <div class="safety-image-placeholder">
                 <div class="safety-badge">OSHA & EN 131</div>
-                <h3>Regulatory Safety Compliance</h3>
+                <h2>Regulatory Safety Compliance</h2>
                 <ul>
                     <li><strong>EN 131:</strong> European safety certification ensuring dimensional limits, load bearing test passes, and anti-slip stability.</li>
                     <li><strong>OSHA 1910.25:</strong> American regulation standardizing rise/run configurations, step angles, and handrail loading capacity.</li>
@@ -388,6 +391,8 @@
     </section>
 
     <!-- Footer -->
+    </main>
+
     <footer class="site-footer">
         <div class="container footer-grid">
             <div class="footer-col brand-col">
@@ -398,7 +403,7 @@
                 <p class="footer-brand-desc">OSHA & EN 131 compliant pre-engineered aluminum access climbing systems. Designed and manufactured for high stability and safety.</p>
             </div>
             <div class="footer-col">
-                <h4>Products</h4>
+                <h3>Products</h3>
                 <ul>
                     <li><a href="products.html#industrial">Industrial Platforms</a></li>
                     <li><a href="products.html#scaffolding">Mobile Scaffolding</a></li>
@@ -408,7 +413,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Resources</h4>
+                <h3>Resources</h3>
                 <ul>
                     <li><a href="products.html#catalog">PDF Catalog Download</a></li>
                     <li><a href="safety.html#manuals">User & Safety Manuals</a></li>
@@ -418,7 +423,7 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Corporate</h4>
+                <h3>Corporate</h3>
                 <ul>
                     <li><a href="about.html">About ModularStep</a></li>
                     <li><a href="about.html#quality">Quality Policy</a></li>
@@ -437,9 +442,9 @@
     </footer>
 
     <!-- Three.js and OrbitControls for 3D Visualizer -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <!-- Main JavaScript Modules -->
-    <script type="module" src="main.js?v=5"></script>
+    <script type="module" defer src="main.js?v=5"></script>
 </body>
 </html>

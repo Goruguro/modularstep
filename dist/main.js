@@ -50,7 +50,25 @@ function init3D() {
     camera.position.set(30, 20, 30);
 
     // 3. Create WebGL Renderer
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    try {
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (e) {
+        console.warn("WebGL not supported. Displaying fallback message.", e);
+        const fallback = document.createElement('div');
+        fallback.className = 'webgl-fallback';
+        fallback.style.display = 'flex';
+        fallback.style.alignItems = 'center';
+        fallback.style.justifyContent = 'center';
+        fallback.style.height = '100%';
+        fallback.style.padding = '20px';
+        fallback.style.textAlign = 'center';
+        fallback.style.color = 'var(--text-secondary)';
+        fallback.style.background = 'var(--bg-secondary)';
+        fallback.innerHTML = '<strong>Interactive 3D Configurator</strong><br>Enable WebGL in your browser to view the 3D model.';
+        container.innerHTML = '';
+        container.appendChild(fallback);
+        return;
+    }
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.innerHTML = ''; // Clear target container

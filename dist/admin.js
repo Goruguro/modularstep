@@ -184,7 +184,24 @@ function init3DPreview() {
     camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
     camera.position.set(4, 3, 5);
 
-    renderer = new THREE.WebGLRenderer({ antialias: true });
+    try {
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+    } catch (e) {
+        console.warn("WebGL not supported. Displaying fallback message.", e);
+        const fallback = document.createElement('div');
+        fallback.className = 'webgl-fallback';
+        fallback.style.display = 'flex';
+        fallback.style.alignItems = 'center';
+        fallback.style.justifyContent = 'center';
+        fallback.style.height = '100%';
+        fallback.style.padding = '20px';
+        fallback.style.textAlign = 'center';
+        fallback.style.color = 'var(--text-secondary)';
+        fallback.style.background = 'var(--bg-secondary)';
+        fallback.innerHTML = '<strong>Interactive 3D Preview</strong><br>Enable WebGL in your browser to view the 3D model.';
+        container.appendChild(fallback);
+        return;
+    }
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.shadowMap.enabled = true;
     container.appendChild(renderer.domElement);
@@ -214,7 +231,7 @@ function init3DPreview() {
 
     // Handle Window Resize
     window.addEventListener('resize', () => {
-        if (!container) return;
+        if (!container || !renderer || !camera) return;
         camera.aspect = container.clientWidth / container.clientHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(container.clientWidth, container.clientHeight);
@@ -223,8 +240,10 @@ function init3DPreview() {
     // Start Loop
     function animate() {
         requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
+        if (controls) controls.update();
+        if (renderer && scene && camera) {
+            renderer.render(scene, camera);
+        }
     }
     animate();
 }
