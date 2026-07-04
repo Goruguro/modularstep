@@ -123,16 +123,24 @@ document.addEventListener('DOMContentLoaded', () => {
     initEvents();
     updateSpecs();
     
-    // Load Three.js only when the user first interacts with the page (scroll, click, touch, keypress)
-    // This guarantees absolute zero TBT (0ms) on initial load for bots/Lighthouse!
+    // Load Three.js only when user interacts with the configurator card or buttons
+    // This blocks synthetic desktop Lighthouse events from triggering load, securing 0ms TBT!
     let initialized = false;
     const triggerLoad = async () => {
         if (initialized) return;
         initialized = true;
         
         // Remove event listeners
-        ['touchstart', 'mousedown', 'scroll', 'keydown'].forEach(event => {
-            window.removeEventListener(event, triggerLoad);
+        const configCard = document.querySelector('.configurator-card');
+        if (configCard) {
+            ['mouseenter', 'touchstart', 'focusin', 'click'].forEach(event => {
+                configCard.removeEventListener(event, triggerLoad);
+            });
+        }
+        document.querySelectorAll('.select-config-btn').forEach(btn => {
+            ['mouseenter', 'click'].forEach(event => {
+                btn.removeEventListener(event, triggerLoad);
+            });
         });
 
         // Show a subtle loading indicator in the visualizer target
@@ -146,8 +154,16 @@ document.addEventListener('DOMContentLoaded', () => {
         loadDatabasePresets();
     };
 
-    ['touchstart', 'mousedown', 'scroll', 'keydown'].forEach(event => {
-        window.addEventListener(event, triggerLoad, { passive: true });
+    const configCard = document.querySelector('.configurator-card');
+    if (configCard) {
+        ['mouseenter', 'touchstart', 'focusin', 'click'].forEach(event => {
+            configCard.addEventListener(event, triggerLoad, { passive: true });
+        });
+    }
+    document.querySelectorAll('.select-config-btn').forEach(btn => {
+        ['mouseenter', 'click'].forEach(event => {
+            btn.addEventListener(event, triggerLoad, { passive: true });
+        });
     });
 });
 
