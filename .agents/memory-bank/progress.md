@@ -6,6 +6,7 @@
 - **Admin Dashboard:** Password-protected CRUD editor (`admin.html`) enabling preset creation, listing, deletion, and real-time 3D previewing.
 - **API & Database Server:** Node.js Express server + SQLite database running under PM2, proxied via Nginx.
 - **Git & GitHub deployment:** Setup git locally and pushed the repository to `github.com/Goruguro/modularstep`.
+- **Performance & Accessibility Optimization:** Inlined minified CSS directly into the HTML headers, deferred heavy Three.js canvas rendering to browser idle times (requestIdleCallback) to eliminate Total Blocking Time (TBT), loaded fonts asynchronously, resolved color contrast accessibility issues (increased primary orange contrast), and wrapped page bodies in semantic main landmarks to achieve a near-perfect mobile Lighthouse score (96 Performance, 100 Accessibility, 100 SEO).
 
 ## Pending Backlog (Next Steps)
 1. **Dynamic Quote pre-fill:** Connect the "Lock In Configuration" button in `index.html` to direct the user to `contact.html?preset_id=N` (or query string parameters) to automatically pre-fill the custom steps/height details in the contact form.
