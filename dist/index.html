@@ -11,6 +11,9 @@
     <!-- Preload Critical Fonts for Instant FCP -->
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Preload Critical JS Modules to Avoid Dependency Chains -->
+    <link rel="modulepreload" href="main.min.js?v=6">
+    <link rel="modulepreload" href="visualizer.min.js">
     <!-- Non-blocking Google Fonts loaded asynchronously -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
     <!-- Inlined Minified CSS for instant FCP and zero CLS -->
