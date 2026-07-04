@@ -13,3 +13,4 @@ We have just completed the multi-page B2B access portal expansion, integrated th
 - `[x]` Update Nginx configuration and PM2 daemons on the Paris VCN server.
 - `[x]` Pushed all commits to GitHub repository `Goruguro/modularstep`.
 - `[x]` Implement PageSpeed & Lighthouse mobile speed optimizations (FCP, TBT, CLS, accessibility).
+- `[x]` Resolve Best Practices console errors (favicon 404 & Three.js WebGL error override) to reach 100 score.
