@@ -1,15 +1,14 @@
 ---
-name: ModularStep Design System
-version: 1.1.0
+name: "ModularStep Design System"
+version: "1.1.0"
 colors:
-  bg_main: "#ffffff"      # Pure White for high-contrast B2B trust
-  bg_surface: "#f8fafc"   # Light Slate Gray for content sections
-  text_primary: "#0f172a" # Deep Slate Blue for authoritative headers
-  text_secondary: "#475569" # Cool Slate for legible body columns
-  accent: "#f97316"       # OSHA/Safety High-Visibility Orange
-  accent_hover: "#ea580c" # Darker Orange for hover indications
-  border: "#e2e8f0"       # Thin Slate gray joints
-  success: "#16a34a"      # Safety compliant green
+  bg_main: "#ffffff"
+  bg_surface: "#f8fafc"
+  text_primary: "#0f172a"
+  text_secondary: "#475569"
+  accent: "#f97316"
+  border: "#e2e8f0"
+  error: "#ef4444"
 spacing:
   scale: "8px"
   xs: "4px"
@@ -24,61 +23,121 @@ shapes:
 typography:
   fonts:
     sans: "Inter, sans-serif"
+    mono: "JetBrains Mono, monospace"
     display: "Space Grotesk, sans-serif"
+  h1:
+    fontFamily: "Space Grotesk"
+    fontSize: "2.25rem"
+    fontWeight: "700"
+  body:
+    fontFamily: "Inter"
+    fontSize: "0.95rem"
+    fontWeight: "400"
 ---
 
-## Overview
-This document serves as the project-specific design system contract for **ModularStep.com**. It dictates the visual tokens, layout patterns, and component styling rules to ensure the web application feels professional, cohesive, and aligned with industrial engineering standards.
+# Design System Specification & Token Contract
 
-The visual identity of ModularStep is designed to evoke a sense of structural engineering, heavy-duty safety, and technical precision. We achieve this by pairing a clean, white background with safety orange highlights, slate-gray borders, and micro-grid patterns.
+This document outlines the visual logic and component layout rules for ModularStep.com.
 
-## Lessons from WernerCo & Çağsan Merdiven
-Our design system implements the following lessons gathered from researching industry leaders:
+---
 
-### 1. Sizing and Height Clarifications (WernerCo)
-*   **Clear Sizing Columns:** When displaying climbing equipment, always specify the different heights (e.g., Step Height, Clearance, Footprint) separately. Users must immediately understand how much space is needed.
-*   **Trust Badge Proximity:** Always place compliance badges (OSHA 1910.25, EN 131) close to quote submission forms and call-to-actions to maximize conversion and B2B credibility.
+## 1. Color Pairing & Accessibility Logic
 
-### 2. B2B Sector Pathways (Çağsan Merdiven)
-*   **Industrial Categorization:** Divide access solutions by clear sectors (e.g., Industrial, Mobile Scaffolding, Warehouse, Aviation) to let procurement agents navigate directly to their specific requirements.
-*   **Detailed Specifications Grids:** Every product catalog page must feature a model-by-model technical specs grid, containing load ratings, dimensions, weights, and configuration triggers.
+All interface elements must map their visual properties to the semantic variables defined in the frontmatter:
 
-## Colors
-The system enforces theme-driven variables instead of hardcoded hex values.
+*   `--color-bg-main`: `#ffffff` (Pure White) - primary background canvas for B2B industrial trust.
+*   `--color-bg-surface`: `#f8fafc` (Light Slate Gray) - used for card containers, configurator panels, and secondary text blocks.
+*   `--color-text-primary`: `#0f172a` (Deep Slate Blue) - high contrast text for authoritative headers.
+*   `--color-text-secondary`: `#475569` (Cool Slate) - readable body columns.
+*   `--color-accent`: `#f97316` (OSHA/Safety High-Visibility Orange) - highlights, links, buttons, and handrails.
+*   `--color-border`: `#e2e8f0` (Slate joints) - thin joints representing technical structural lines.
+*   `--color-error`: `#ef4444` (Safety Red) - warning states and error validations.
 
-### Active Palette
-- **Primary Background (`bg_main`):** `#ffffff` (Pure White) provides a clean, trustworthy background.
-- **Surface Background (`bg_surface`):** `#f8fafc` (Light Slate) used to group configurator inputs and product modules.
-- **Accent Color (`accent`):** `#f97316` (Safety Orange) acts as the high-visibility highlight for interactive states, handrails, and critical actions.
-- **Borders (`border`):** `#e2e8f0` represents structural steel joints.
+### Accessibility Rules
+*   All color pairings must meet WCAG AA standards (minimum contrast ratio of 4.5:1).
+*   No hardcoded hex or rgb values in any CSS stylesheet.
 
-## Typography
-Typography must provide clear visual hierarchy, avoiding flat, hard-to-read text columns.
+---
 
-### Font Stacks
-*   **Display/Headers:** `Space Grotesk` - used to convey technical and industrial precision.
-*   **Body/Labels:** `Inter` - optimized for legibility at small sizes.
+## 2. Spacing & Grid Geometry
 
-### Type Scale Rules
-*   **H1 Title:** `3.5rem` (Hero), bold, with letter-spacing of `-0.02em` for punchy headers.
-*   **H2 Subtitle:** `2.25rem` (Sections), semi-bold.
-*   **H3 Section:** `1.25rem`, semi-bold.
-*   **Body:** `0.95rem`, normal, line-height `1.6`.
+Layouts must maintain logical alignment and alignment scales.
 
-## Layout
-Responsive layout safety prevents breaking elements on varied screen sizes.
+### The Scale Principle
+All spacing (margins, paddings, gaps) must be multiples of the base 8px scale grid.
+*   `--spacing-xs` (xs): 4px
+*   `--spacing-sm` (sm): 8px
+*   `--spacing-md` (md): 16px
+*   `--spacing-lg` (lg): 24px
+*   `--spacing-xl` (xl): 32px
 
-### Grids & Flexboxes
-*   **Base Spacing:** All padding, margins, and gaps must follow the `8px` grid scale.
-*   **Flex Wrap:** All flex containers must include `flex-wrap: wrap` to allow items to stack gracefully on narrow mobile viewports.
-*   **Auto-fit Grid:** CSS Grid templates for card listings must use:
-  ```css
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  ```
+### Layout Safety
+*   **Fluid Padding:** Section blocks must use fluid vertical spacing:
+    `padding-block: clamp(var(--spacing-lg), 5vw, var(--spacing-xl));`
+*   **Flex Wrapping:** All flexbox row layouts must specify `flex-wrap: wrap` to prevent horizontal overflows on narrow screens.
+*   **Auto-fit Grids:** Card lists must utilize auto-fitting grid templates:
+    `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));`
 
-## Shapes
-Shapes define the product's visual identity.
+---
 
-### Rounding Standards
-*   **Small Components (Buttons, Badges, Inputs):** `8px` (`radius_md`). Rounding must look crisp and industrial. Banned: Fully rounded pill buttons (`border-radius: 9999px`) as they look generic and lack a precise tech feel.
-*   **Containers (Cards, Modals, Panels):** `12px` (`radius_lg`).
+## 3. Shapes & Rounding Logic
+
+Rounding standards define the visual signature of the application.
+
+*   `--radius-sm` (4px): Used for buttons, inputs, tags, and badge indicators.
+*   `--radius-md` (8px): Used for cards, list items, alert boxes, and dropdown menus.
+*   `--radius-lg` (12px): Used for dialog modals, bottom sheets, and main section panels.
+
+### Geometric Consistency
+*   Components must never mix rounded and sharp corners arbitrarily.
+*   Avoid fully-rounded pill shapes (`9999px`) unless configuring a standard circular icon button.
+
+---
+
+## 4. Elevation & Z-Indexing
+
+Depth layers convey semantic hierarchy.
+
+### Elevation via Borders
+*   Prioritize thin, clean borders (`1px solid var(--color-border)`) over drop shadows to maintain high-contrast clarity.
+*   When using shadows, apply a single, unified elevation key on hover states:
+    `box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);`
+
+### Z-Index Layers
+To prevent overlap conflicts, all z-index properties must map to these exact steps:
+*   Content / Base: `0`
+*   Sticky Header / Navbar: `100`
+*   Dropdown Menus / Popovers: `500`
+*   Modals / Overlays: `1000`
+*   Toast Alerts / Notifications: `9999`
+
+---
+
+## 5. Component States & Lifecycle
+
+Every interactive element (buttons, form inputs, list items) must define its full visual lifecycle states:
+
+1.  **Default:** Clean layout, styled using standard variables.
+2.  **Hover:** Triggers subtle background change, border shifts to `--color-accent` (use `transition: all 0.2s ease`).
+3.  **Active (Click):** Triggers `transform: scale(0.98);` for tactile physical feedback.
+4.  **Focus-visible:** Outline highlight visible for keyboard accessibility navigation:
+    `outline: 2px solid var(--color-accent); outline-offset: 2px;`
+5.  **Disabled:** Opacity reduced to `0.6`, click interactions disabled:
+    `pointer-events: none; cursor: not-allowed;`
+
+---
+
+## 6. Design Discovery & Competitor Reference Protocol
+
+### Identified Competitors & Benchmarks
+Our design features and layouts are inspired by industry leaders in access platforms and climbing equipment:
+
+1.  **Zarges (zarges.com):**
+    *   *UX Pattern:* Direct online configurators for fixed ladders and access stairs with standards compliance (EN 14122).
+    *   *Aesthetic:* Clean aluminum grey, high contrast borders, clear input parameters.
+2.  **Çağsan Merdiven (cagsanmerdiven.com):**
+    *   *UX Pattern:* Clear sector pathways (Aviation, Industrial, Scaffolding, Mobile Scaffolding) to segment business buyers.
+    *   *Aesthetic:* Strong technical grids and model-by-model specification tables.
+3.  **WernerCo (wernerco.com):**
+    *   *UX Pattern:* Clear vertical height dimensions display (reach height vs clearance vs platform height).
+    *   *Aesthetic:* Safety icons and certifications placed directly adjacent to CTA forms to establish B2B credibility.
