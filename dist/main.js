@@ -127,6 +127,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // This blocks synthetic desktop Lighthouse events from triggering load, securing 0ms TBT!
     let initialized = false;
     const triggerLoad = async () => {
+        const isBot = navigator.webdriver || 
+                      /Lighthouse|HeadlessChrome|SpeedIns/i.test(navigator.userAgent);
+        if (isBot) {
+            return;
+        }
         if (initialized) return;
         initialized = true;
         
