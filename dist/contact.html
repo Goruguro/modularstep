@@ -69,14 +69,14 @@
                         <span class="info-icon">✉️</span>
                         <div class="info-text">
                             <strong>Sales Department:</strong>
-                            <span><!--noemail-->sales@modularstep.com<!--/noemail--></span>
+                            <span id="sales-email">sales[at]modularstep.com</span>
                         </div>
                     </div>
                     <div class="info-item">
                         <span class="info-icon">✉️</span>
                         <div class="info-text">
                             <strong>General Info:</strong>
-                            <span><!--noemail-->info@modularstep.com<!--/noemail--></span>
+                            <span id="info-email">info[at]modularstep.com</span>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="client-email">Email Address</label>
-                            <!--noemail--><input type="email" id="client-email" required placeholder="john@acme.com"><!--/noemail-->
+                            <input type="email" id="client-email" required placeholder="john@acme.com">
                         </div>
                         <div class="form-group">
                             <label for="client-phone">Phone Number</label>
@@ -189,14 +189,21 @@
 
     <!-- Form script -->
     <script>
-        document.getElementById('quote-form')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const feedback = document.getElementById('form-feedback');
-            if (feedback) {
-                feedback.className = 'form-feedback success';
-                feedback.textContent = 'Inquiry submitted successfully! Our engineering team will contact you.';
-                e.target.reset();
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            const sales = document.getElementById('sales-email');
+            const info = document.getElementById('info-email');
+            if (sales) sales.textContent = 'sales' + '@' + 'modularstep.com';
+            if (info) info.textContent = 'info' + '@' + 'modularstep.com';
+            
+            document.getElementById('quote-form')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const feedback = document.getElementById('form-feedback');
+                if (feedback) {
+                    feedback.className = 'form-feedback success';
+                    feedback.textContent = 'Inquiry submitted successfully! Our engineering team will contact you.';
+                    e.target.reset();
+                }
+            });
         });
     </script>
 </body>

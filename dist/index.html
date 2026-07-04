@@ -356,7 +356,7 @@
                     </div>
                     <div class="info-item">
                         <span class="info-icon">✉️</span>
-                        <span><!--noemail-->sales@modularstep.com<!--/noemail--></span>
+                        <span id="sales-email">sales[at]modularstep.com</span>
                     </div>
                 </div>
             </div>
@@ -369,7 +369,7 @@
                         </div>
                         <div class="form-group">
                             <label for="client-email">Email Address</label>
-                            <!--noemail--><input type="email" id="client-email" required placeholder="john@company.com"><!--/noemail-->
+                            <input type="email" id="client-email" required placeholder="john@company.com">
                         </div>
                     </div>
                     <div class="form-row">
@@ -442,5 +442,11 @@
 
     <!-- Main JavaScript Modules -->
     <script type="module" defer src="main.min.js?v=6"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const el = document.getElementById('sales-email');
+            if (el) el.textContent = 'sales' + '@' + 'modularstep.com';
+        });
+    </script>
 </body>
 </html>
